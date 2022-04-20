@@ -7,10 +7,12 @@
 let express = require('express');
 require('dotenv').config();
 let weatherData = require('./data/weather.json')
+let cors = require('cors');
 
 // USE
 // assign required file a variable
 let app = express();
+app.use(cors());
 
 let PORT = process.env.PORT || 3002;
 
@@ -20,15 +22,27 @@ app.get('/', (request, response) => {
   response.send('Default Route');
 });
 
-app.get('/weather', (request, response) => {
-  let locationInput = request.query.location;
-  console.log(request.query.location);
-  let locationData = weatherData.find(data => data.city_name === locationInput);
-  let forecastArr = [];
-  locationData.data.forEach(object => {
-    forecastArr.push(new Forecast(object));
-  });
-  response.send(forecastArr);
+app.get('/weather', (request, response, next) => {
+  try{
+
+    let locationInput = request.query.location;
+    let locationLat = parseInt(request.query.lat);
+    let locationLon = parseInt(request.query.lon);
+    
+    let locationData = weatherData.find(data => 
+      data.city_name === locationInput 
+      && parseInt(data.lat) === locationLat 
+      && parseInt(data.lon) === locationLon
+    );
+    let forecastArr = [];
+    locationData.data.forEach(object => {
+      forecastArr.push(new Forecast(object));
+    });
+    response.send(forecastArr);
+  }
+  catch{
+    next(error);
+  }
 });
 
 app.get('*', (request, response) => {
@@ -37,6 +51,9 @@ app.get('*', (request, response) => {
 
 // ERRORS
 // Handle any errors
+app.use((error, request, response, next) => {
+  response.status(500).send(error.message);
+});
 
 // CLASSES
 class Forecast {
