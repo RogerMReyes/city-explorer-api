@@ -15,6 +15,8 @@ In order for another user to get this program running on their machine they must
 ## Architecture
 This server is using multiple npm packages that include express, dotenv, and cors. Future implementation will use Heroku.
 
+![City Explorer API Whiteboard](imgs/Lab07Whiteboard.jpg)
+
 ## Change Log
 
 Name of feature: #1 Setup
