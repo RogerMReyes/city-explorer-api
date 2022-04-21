@@ -17,6 +17,7 @@ This server is using multiple npm packages that include express, dotenv, and cor
 
 ![City Explorer Whiteboard6](imgs/Lab06Whiteboard.jpg)
 ![City Explorer Whiteboard7](imgs/Lab07Whiteboard.jpg)
+![City Explorer Whiteboard7](imgs/Lab08Whiteboard.jpg)
 
 
 ## Change Log
@@ -41,6 +42,18 @@ Start time: 4:20pm
 Finish time: 5:00pm
 
 Actual time needed to complete: 40 min
+
+---
+
+Name of feature: #3 Query setup for weather and movies
+
+Estimate of time needed to complete: 2 hour
+
+Start time: 5:10pm
+
+Finish time: 6:18pm
+
+Actual time needed to complete: 1 hour 8 mins
 
 
 ## Credit and Collaborations
