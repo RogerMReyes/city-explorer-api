@@ -1,5 +1,7 @@
 'use strict';
 let axios = require('axios');
+let cache = require('./modules/cache.js');
+
 
 class Movies {
   constructor(dataset){
@@ -13,11 +15,23 @@ class Movies {
 function getMovies(req, res) {
   let locationName = req.query.locationName;
   let movieURL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_API_KEY}&language=en-US&query=${locationName}&page=1&include_adult=false`;
+  let key = 'movie-city-' + locationName;
+  console.log(cache);
+  if (cache[key] && (Date.now() - cache[key].timestamp < 50000)) {
+    console.log('Cache hit');
+    res.status(200).send(cache[key].data);
 
-  axios.get(movieURL)
-    .then(movieInfo => movieInfo.data.results.map(object => new Movies(object)))
-    .then(newMoviesInfo => res.status(200).send(newMoviesInfo))
-    .catch(err => console.error(err));
+  } else{
+    cache[key] = {};
+    cache[key].timestamp = Date.now();
+    axios.get(movieURL)
+      .then(movieInfo => movieInfo.data.results.map(object => new Movies(object)))
+      .then(newMoviesInfo => {
+        cache[key].data = newMoviesInfo;
+        res.status(200).send(newMoviesInfo)
+      })
+      .catch(err => console.error(err));
+  }
 }
 
 module.exports = getMovies;
