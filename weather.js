@@ -13,7 +13,11 @@ class Forecast {
 function getWeather(req, res) {
   let locationLat = req.query.lat;
   let locationLon = req.query.lon;
-  let weatherURL = `https://api.weatherbit.io/v2.0/current?lat=${locationLat}&lon=${locationLon}&key=${process.env.WEATHERBIT_API_KEY}&units=I`
+  // OLD 1 day
+  // let weatherURL1 = `https://api.weatherbit.io/v2.0/current?lat=${locationLat}&lon=${locationLon}&key=${process.env.WEATHERBIT_API_KEY}&units=I`
+  //16 Day Forecast
+  let weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${locationLat}&lon=${locationLon}&key=${process.env.WEATHERBIT_API_KEY}&units=I`
+
 
   // Refactor for URL not working STRETCH: Find out why
   // let weatherURL = 'https://api.weatherbit.io/v2.0/current';
