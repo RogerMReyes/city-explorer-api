@@ -6,6 +6,7 @@ class Forecast {
   constructor(dataset){
     this.date = dataset.datetime;
     this.description = dataset.weather.description;
+    this.icon = dataset.weather.icon;
     this.temp = dataset.temp;
   }
 }
@@ -28,7 +29,7 @@ function getWeather(req, res) {
   //   units: 'I'
   // }
 
-  axios.get(weatherURL)
+  axios.get(weatherURL2)
     .then(weatherInfo => weatherInfo.data.data.map(object => new Forecast(object)))
     .then(newWeatherInfo => res.status(200).send(newWeatherInfo))
     .catch(err => console.error(err));

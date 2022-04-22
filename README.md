@@ -17,7 +17,9 @@ This server is using multiple npm packages that include express, dotenv, and cor
 
 ![City Explorer Whiteboard6](imgs/Lab06Whiteboard.jpg)
 ![City Explorer Whiteboard7](imgs/Lab07Whiteboard.jpg)
-![City Explorer Whiteboard7](imgs/Lab08Whiteboard.jpg)
+![City Explorer Whiteboard8](imgs/Lab08Whiteboard.jpg)
+![City Explorer Whiteboard9](imgs/Lab09Whiteboard.jpg)
+
 
 
 ## Change Log
@@ -54,6 +56,18 @@ Start time: 5:10pm
 Finish time: 6:18pm
 
 Actual time needed to complete: 1 hour 8 mins
+
+---
+
+Name of feature: #4 Refactor to Modules
+
+Estimate of time needed to complete: 2 hour
+
+Start time: 2:10pm
+
+Finish time: 4:00pm
+
+Actual time needed to complete: 1 hour 50 mins
 
 
 ## Credit and Collaborations
