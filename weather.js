@@ -6,6 +6,7 @@ class Forecast {
   constructor(dataset){
     this.date = dataset.datetime;
     this.description = dataset.weather.description;
+    this.icon = dataset.weather.icon;
     this.temp = dataset.temp;
   }
 }
@@ -13,7 +14,10 @@ class Forecast {
 function getWeather(req, res) {
   let locationLat = req.query.lat;
   let locationLon = req.query.lon;
+  //Current Day
   let weatherURL = `https://api.weatherbit.io/v2.0/current?lat=${locationLat}&lon=${locationLon}&key=${process.env.WEATHERBIT_API_KEY}&units=I`
+  //16 Day Forecast
+  let weatherURL2 = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${locationLat}&lon=${locationLon}&key=${process.env.WEATHERBIT_API_KEY}&units=I`
 
   // Refactor for URL not working STRETCH: Find out why
   // let weatherURL = 'https://api.weatherbit.io/v2.0/current';
@@ -24,7 +28,7 @@ function getWeather(req, res) {
   //   units: 'I'
   // }
 
-  axios.get(weatherURL)
+  axios.get(weatherURL2)
     .then(weatherInfo => weatherInfo.data.data.map(object => new Forecast(object)))
     .then(newWeatherInfo => res.status(200).send(newWeatherInfo))
     .catch(err => console.error(err));
