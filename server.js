@@ -1,44 +1,34 @@
 'use strict';
 
-// REQUIRES
-// require is used instead of import in servers
-let express = require('express');
+const express = require('express');
 require('dotenv').config();
-let cors = require('cors');
-let getWeather = require('./weather.js');
-let getMovies = require('./movies.js');
+const cors = require('cors');
 
-// USE
-// assign required file a variable
-let app = express();
+const weather = require('./modules/weather.js');
+const getMovies = require('./movies')
+
+const app = express();
 app.use(cors());
 
-let PORT = process.env.PORT || 3002;
+let PORT = process.env.PORT || 3002
 
-// ROUTES
-// endpoints
 app.get('/', (request, response) => {
   response.send('Default Route');
 });
 
+app.get('/weather', weatherHandler);
 
-app.get('/weather', getWeather);
-
-
-app.get('/movies', getMovies)
+app.get('/movies', getMovies);
 
 
-app.get('*', (request, response) => {
-  response.send('Not a valid request!');
-});
+function weatherHandler(request, response) {
+  const { lat, lon } = request.query;
+  weather(lat, lon)
+  .then(summaries => response.send(summaries))
+  .catch((error) => {
+    console.error(error);
+    response.status(200).send('Sorry. Something went wrong!')
+  });
+}  
 
-// ERRORS
-// Handle any errors
-app.use((error, request, response, next) => {
-  response.status(500).send(error.message);
-});
-
-
-// LISTEN
-// Start the server
-app.listen(PORT, () => console.log(`listening on ${PORT}`));
+app.listen(PORT, () => console.log(`Server up on ${PORT}`));
