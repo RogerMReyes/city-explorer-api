@@ -29,7 +29,7 @@ function getWeather(req, res) {
   //   units: 'I'
   // }
 
-  axios.get(weatherURL2)
+  axios.get(weatherURL)
     .then(weatherInfo => weatherInfo.data.data.map(object => new Forecast(object)))
     .then(newWeatherInfo => res.status(200).send(newWeatherInfo))
     .catch(err => console.error(err));
