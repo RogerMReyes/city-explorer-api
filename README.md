@@ -82,6 +82,30 @@ Finish time: 4:21pm
 
 Actual time needed to complete: 1 hour 21 mins
 
+---
+
+Name of feature: #6 Change server and weather
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 3:30pm
+
+Finish time: 4:27pm
+
+Actual time needed to complete: 57 min
+
+---
+
+Name of feature: #7 Add Yelp Module
+
+Estimate of time needed to complete: 1 hour
+
+Start time: 7:20pm
+
+Finish time: 9:00pm
+
+Actual time needed to complete: 1 hour 40 min
+
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->

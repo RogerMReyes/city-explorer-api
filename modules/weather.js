@@ -17,7 +17,7 @@ function getWeather(latitude, longitude) {
     cache[key].data = axios.get(url)
     .then(response => parseWeather(response.data));
   }
-  
+  console.log(cache[key].data);
   return cache[key].data;
 }
 
@@ -38,6 +38,7 @@ class Weather {
     this.description = dataset.weather.description;
     this.icon = dataset.weather.icon;
     this.temp = dataset.temp;
+    this.timestamp = Date.now();
   }
 }
 
