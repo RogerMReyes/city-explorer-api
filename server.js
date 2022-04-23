@@ -5,7 +5,8 @@ require('dotenv').config();
 const cors = require('cors');
 
 const weather = require('./modules/weather.js');
-const getMovies = require('./movies')
+const getMovies = require('./movies');
+const getYelp = require('./modules/yelp.js');
 
 const app = express();
 app.use(cors());
@@ -19,6 +20,8 @@ app.get('/', (request, response) => {
 app.get('/weather', weatherHandler);
 
 app.get('/movies', getMovies);
+
+app.get('/yelp', getYelp);
 
 
 function weatherHandler(request, response) {
